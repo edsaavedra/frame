@@ -9,8 +9,8 @@ const AddTodo = ({onAddTodo}) => {
             if (!value) return;
             onAddTodo(value);
         }}>
-            <input type="text" name="newTodo" ref={node => input = node}/>
-            <button type="submit">Add</button>
+            <input type="text" className="teal lighten-5" ref={node => input = node}/>
+            <button type="submit" className="btn">Add</button>
         </form>
     );
 }

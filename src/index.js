@@ -1,21 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './index.css';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootStore from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { loadState, saveState } from './localStorage';
+import { throttle } from 'lodash';
 
-const defaultState = {
-  todos: [
-    { id: 1, text: "do something", status: true },
-    { id: 2, text: "do something else", status: false },
-  ]
-}
+const localStore = loadState();
+const store = createStore(rootStore, localStore, composeWithDevTools());
 
-const store = createStore(rootStore, defaultState, composeWithDevTools());
+store.subscribe(throttle(() => saveState(store.getState()), 1000));
 
 ReactDOM.render(
   <Provider store={store}>
