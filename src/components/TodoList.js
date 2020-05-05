@@ -1,22 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 
-const TodoList = ({ todos = [], onFinishTodo }) => {
+const TodoList = ({ todos = [], onFinishTodo, onDeleteTodo }) => {
     return (
         <ul className="collection">
             {todos.map((todo, idx) => (
                 <li
                     key={idx}
-                    className={`collection-item ${todo.status ? "" : "disabled"}`}
-                    onClick={onFinishTodo.bind(null, todo.id)}>{todo.text}</li>
+                    className={`collection-item ${todo.status ? "" : "disabled"}`}>
+                    <span onClick={onFinishTodo.bind(null, todo.id)}>{todo.text}</span>
+                    <button className="btn" onClick={onDeleteTodo.bind(null, todo.id)}>
+                        <i className="material-icons">delete</i>
+                    </button>
+                </li>
             ))}
         </ul>
     );
 };
-
-TodoList.propTypes = {
-    todos: PropTypes.array,
-    onFinishTodo: PropTypes.func
-}
 
 export default TodoList;

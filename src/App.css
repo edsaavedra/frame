@@ -18,6 +18,18 @@ code {
   text-align: center;
 }
 
+.card .card-image {
+  height: 175px;
+  overflow: hidden;
+}
+.card .card-content {
+  height: 110px;
+}
+
+.card .card-content p {
+  text-transform: capitalize;
+}
+
 .collection .collection-item.disabled {
   background: #e0e0e0;
   color: #adadad
@@ -51,4 +63,8 @@ code {
   to {
     transform: rotate(360deg);
   }
+}
+
+button {
+  margin: 0 10px;
 }
